@@ -1,0 +1,39 @@
+
+O comando ping tem como resultado a resposta do servidor que foi requisitado no comando, não se preocupando com o caminho, assim o TTL é setado para 50 saltos. As informações apresentadas possuem número máximo de saltos, tamanho do pacote, endereço IP do destino, o tempo de ida e volta do pacote, e as estatisticas dos pacotes transmitidos.
+
+O comando mtr(traceroute) modifica o numero de saltos para o pacote ping de forma a encontrar os nós utilizados para atingir o destino, desta forma inicia um disparo de comandos ping para cada um dos nós. Para identificar cada nó o TTL é modificado progressivamante de forma obter a resposta de cada roteador.
+
+
+===================== Comando ping =====================
+PING www.google.com.br (172.217.30.67) 56(84) bytes of data.
+64 bytes from gru06s34-in-f3.1e100.net (172.217.30.67): icmp_seq=1 ttl=50 time=8.08 ms
+64 bytes from gru06s34-in-f3.1e100.net (172.217.30.67): icmp_seq=2 ttl=50 time=7.21 ms
+64 bytes from gru06s34-in-f3.1e100.net (172.217.30.67): icmp_seq=3 ttl=50 time=8.79 ms
+64 bytes from gru06s34-in-f3.1e100.net (172.217.30.67): icmp_seq=4 ttl=50 time=7.32 ms
+^C
+--- www.google.com.br ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 7.212/7.852/8.793/0.641 ms
+
+
+===================== Comando mtr (traceroute) =====================
+rle-desktop (192.168.106.194)                                                                                                        2019-03-14T14:30:50-0300
+Keys:  Help   Display mode   Restart statistics   Order of fields   quit
+                                                                                                                     Packets               Pings
+ Host                                                                                                              Loss%   Snt   Last   Avg  Best  Wrst StDev
+ 1. ???
+ 2. 192.168.100.254                                                                                                 0.0%    42    0.1   0.1   0.1   0.2   0.0
+ 3. metcalfe.dainf.ct.utfpr.edu.br                                                                                  2.4%    42    0.5   0.7   0.2   9.1   1.6
+ 4. 200.134.25.254                                                                                                  0.0%    42    0.4   1.1   0.3   9.6   2.0
+ 5. master.cefetpr.br                                                                                               0.0%    42    1.9   2.4   0.9  10.7   2.3
+ 6. p21-v1630-araucaria-utfpr.pop-pr.rnp.br                                                                         2.4%    42    0.8   1.8   0.7  10.2   2.0
+ 7. e1-5-v103-lapa-araucaria.pop-pr.rnp.br                                                                          0.0%    41    0.7   1.9   0.6  10.2   2.6
+ 8. 200.143.254.129                                                                                                 0.0%    41    0.6   1.4   0.6   9.9   2.0
+ 9. 200.143.255.142                                                                                                 0.0%    41    6.8   8.1   6.5  35.9   4.7
+10. as15169.saopaulo.sp.ix.br                                                                                       0.0%    41    7.3   8.3   7.1  16.9   2.1
+11. 74.125.243.67                                                                                                   0.0%    41    9.9   8.7   7.6  14.9   1.6
+12. 209.85.254.251                                                                                                  0.0%    41   19.3  15.8  14.5  23.8   1.9
+13. 108.170.251.65                                                                                                  2.4%    41   14.3  14.7  13.8  22.9   1.6
+14. 216.239.50.155                                                                                                  4.9%    41   16.5  16.9  15.5  28.6   2.8
+15. gru09s19-in-f99.1e100.net                                                                                       0.0%    41   13.9  14.5  13.8  22.8   1.5
+

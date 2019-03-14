@@ -1,0 +1,2 @@
+O comando ping consiste em um pacote ICMP para o destino contento um alto número de saltos de forma a esperar a resposta do servidor de destino.
+O comando mtr consiste em vários pacotes ICMP onde os TTL são modificados sequencialmente de forma a identificar todos os nós no caminho até encontrar o destino.
