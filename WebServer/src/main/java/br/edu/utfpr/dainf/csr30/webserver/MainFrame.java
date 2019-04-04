@@ -1,5 +1,6 @@
 package br.edu.utfpr.dainf.csr30.webserver;
 
+import br.edu.utfpr.dainf.csr30.webserver.core.Configurations;
 import br.edu.utfpr.dainf.csr30.webserver.core.WebServer;
 
 /**
@@ -22,6 +23,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        jTextFieldHomeFolder.setText(System.getProperty("user.dir") + "/home");
     }
 
     /**
@@ -38,6 +40,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonStartStop = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaStatus = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldHomeFolder = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -61,6 +65,8 @@ public class MainFrame extends javax.swing.JFrame {
         jTextAreaStatus.setRows(5);
         jScrollPane1.setViewportView(jTextAreaStatus);
 
+        jLabel2.setText("Home Folder:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,8 +80,11 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldServerPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonStartStop)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldHomeFolder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonStartStop)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -85,7 +94,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldServerPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonStartStop))
+                    .addComponent(jButtonStartStop)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldHomeFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
@@ -99,6 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
             putMessage("Starting Server...");
             if(WebServer.start(jTextFieldServerPort.getText())) {
                 jButtonStartStop.setText("Stop");
+                Configurations.getInstance().setHome(jTextFieldHomeFolder.getText());
                 putMessage("Server started");
             } else {
                 putMessage("Server FAIL to start");
@@ -156,8 +168,10 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonStartStop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea jTextAreaStatus;
+    private javax.swing.JTextField jTextFieldHomeFolder;
     private javax.swing.JTextField jTextFieldServerPort;
     // End of variables declaration//GEN-END:variables
 }

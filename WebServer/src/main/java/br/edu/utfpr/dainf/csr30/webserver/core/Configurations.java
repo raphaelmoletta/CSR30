@@ -9,12 +9,12 @@ public class Configurations {
     
     private int port  = 1234;
     private boolean running = false;
+    private String home = "\\";
     
     private Configurations() {
         
     }
-
-    
+   
     public static synchronized Configurations getInstance() {
         if(instance == null)
             instance = new Configurations();
@@ -36,6 +36,12 @@ public class Configurations {
     public synchronized void setRunning(boolean running) {
         this.running = running;
     }
-    
-    
+
+    public synchronized String getHome() {
+        return home;
+    }
+
+    public synchronized void setHome(String home) {
+        this.home = home;
+    }    
 }
